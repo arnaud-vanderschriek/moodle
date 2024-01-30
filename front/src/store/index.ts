@@ -3,7 +3,6 @@ import user from './user';
 
 const models = {
     user,
-    // va contenir mes différents modèles... 
 }
 
 const store = init({

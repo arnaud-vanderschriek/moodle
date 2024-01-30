@@ -32,7 +32,6 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,9 +42,11 @@ export default function SignIn() {
 	
     try {
         const response = await Authentication.login({ email, password });
+        // enregistrer la réponse dans le store 
         // ====> Ici je dois gérer la réponse du service...
+        // peut etre appeller un autre service pour la redirection...
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
   };
 
