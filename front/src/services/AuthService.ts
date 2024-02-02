@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { User } from '../types';
+import { LoginData, User } from '../types';
 
 const AuthService = {
-  login: async ({ email , password }: User) => {
+  login: async ({ username , password }: LoginData) => {
     try {
-      const response = await axios.post('....', { email, password });
-      return response.data;
+      // const response = await axios.post('localhost:5471/api/login', { email, password });
+      // return response.data;
+
+      return { username, password } as User
       
     } catch (error: any) {
       throw error.response.data;

@@ -1,15 +1,16 @@
 import { RematchDispatch } from '@rematch/core';
 import { User } from '../types';
-import { RootState } from '.';
 
 // type UsersState = Readonly<User[]>;
 // const INITIAL_STATE: UsersState = '';
 const INITIAL_STATE: User = {
+    username: '',
     email: '',
-    password: ''
+    userType: 0,
+    isAuthenticated: false
 };
 
-const model = {
+const user = {
   name: 'user',
   state: INITIAL_STATE,
   reducers: {
@@ -23,6 +24,4 @@ const model = {
   }),
 };
 
-export default model;
-
-export const test = (state: RootState) => state.model;
+export default user;

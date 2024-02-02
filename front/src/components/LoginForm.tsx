@@ -12,8 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Authentication from '../services/Authentication';
-
+// import Authentication from '../services/AuthService';
+import {RootDispatch, RootState, store} from '../store';
+import { useNavigate } from 'react-router-dom';
+import { connect } from 'http2';
+import { Login } from '@mui/icons-material';
 
 function Copyright(props: any) {
   return (
@@ -32,16 +35,20 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget); // attention 
-    const email = data.get('email');
+    const data = new FormData(event.currentTarget); 
+    const username = data.get('username');
     const password = data.get('password');
 	
     try {
-        const response = await Authentication.login({ email, password });
+        // const response = await Authentication.login({ email, password });
+        store.dispatch({ type: "auth/saveUser", payload: {username, password} }); // state = { count: 1 }
+        //store.dispatch.auth.saveUser({username, password})
+        navigate("/dashboard");
         // enregistrer la réponse dans le store 
         // ====> Ici je dois gérer la réponse du service...
         // peut etre appeller un autre service pour la redirection...
@@ -76,10 +83,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -123,3 +130,6 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+
+
