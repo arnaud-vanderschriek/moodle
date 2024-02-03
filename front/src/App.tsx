@@ -8,40 +8,42 @@ import Teacherdashboard from './pages/Teacherdashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import LoginForm from './components/LoginForm';
 import './App.css';
+import { Provider } from 'react-redux';
 
 function App() {
   const isAuthenticated = store.getState().user.isAuthenticated;
 
   return (
-    <div className="App">
-      <Router>
-        <div>
-          <Header />
-          <div className='container'>
-            <Routes>
-              <Route path='/' Component={LoginForm} />
-              {
-                isAuthenticated ? (
-                  <>
-                    <SideBar />
-                    <Route path='/dashboard'>
-                      <Dashboard>
-                        {store.getState().user.userType === 0 && <Studentdashboard />}
-                        {store.getState().user.userType === 1 && <Teacherdashboard />}
-                        {store.getState().user.userType === 2 && <AdminDashboard />}
-                      </Dashboard>
-                    </Route>
-                  </>
-                ) : (
-                  <Route path='/' Component={LoginForm} />
-                )
-              }
-            </Routes>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+          <div>
+            <Header />
+            <div className='container'>
+              <Routes>
+                <Route path='/' Component={LoginForm} />
+                {
+                  isAuthenticated ? (
+                    <>
+                      <SideBar />
+                      <Route path='/dashboard'>
+                        <Dashboard>
+                          {store.getState().user.userType === 0 && <Studentdashboard />}
+                          {store.getState().user.userType === 1 && <Teacherdashboard />}
+                          {store.getState().user.userType === 2 && <AdminDashboard />}
+                        </Dashboard>
+                      </Route>
+                    </>
+                  ) : (
+                    <Route path='/' Component={LoginForm} />
+                  )
+                }
+              </Routes>
+            </div>
           </div>
-        </div>
-      </Router>
-      
-    </div>
+        </Router>
+      </div>
+    </Provider>  
   );
 }
 

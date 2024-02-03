@@ -13,10 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import Authentication from '../services/AuthService';
-import {RootDispatch, RootState, store} from '../store';
+import {RootDispatch } from '../store';
 import { useNavigate } from 'react-router-dom';
-import { connect } from 'http2';
-import { Login } from '@mui/icons-material';
+import { connect } from 'react-redux';
+import { LoginData } from '../types';
+
 
 function Copyright(props: any) {
   return (
@@ -34,8 +35,9 @@ function Copyright(props: any) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+function SignIn(props: any) {
   const navigate = useNavigate();
+  const { saveUserWithDispatch } = props;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,7 +48,7 @@ export default function SignIn() {
 	
     try {
         // const response = await Authentication.login({ email, password });
-        store.dispatch({ type: "auth/saveUser", payload: {username, password} }); // state = { count: 1 }
+        saveUserWithDispatch({username, password})
         //store.dispatch.auth.saveUser({username, password})
         navigate("/dashboard");
         // enregistrer la réponse dans le store 
@@ -131,5 +133,9 @@ export default function SignIn() {
   );
 }
 
+const mapDispatch = (dispatch: RootDispatch) => ({
+  saveUserWithDispatch: (userData: LoginData) => dispatch.auth.saveUserWithDispatch(userData)
+})
 
+export default connect(null, mapDispatch)(SignIn)
 

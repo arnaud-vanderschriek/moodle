@@ -1,6 +1,5 @@
 import { RematchDispatch } from '@rematch/core';
 import { LoginData, User } from '../types';
-import { store } from '.';
 
 //const { dispatch} = store;
 // type UsersState = Readonly<User[]>;
@@ -15,21 +14,21 @@ const auth = {
   state: INITIAL_STATE,
   reducers: {
     saveUser: (state: LoginData, payload: LoginData) => { 
-
-        const obj: User = {
-          username: payload.username,
-          email: "test@gmail.com",
-          userType: 0,
-          isAuthenticated: true
-        }
-
-        store.dispatch.user.saveUser(obj)
         return { ...state, ...payload }
      },
     
   },
   effects: (dispatch: RematchDispatch<any>) => ({
-    
+    saveUserWithDispatch: (payload: LoginData) => {
+      const obj: User = {
+        username: payload.username,
+        email: "test@gmail.com",
+        userType: 0,
+        isAuthenticated: true
+      };
+
+    dispatch.user.saveUser(obj)
+    }
     // utiliser le dispatcher pour gérer mes actions ...
   }),
 };
