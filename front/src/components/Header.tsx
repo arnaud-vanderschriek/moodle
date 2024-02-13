@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Header = () => {
+export const Header = () => {
   return (
-    <div>Header</div>
+    <div>
+      <div>
+        <img src="" alt="" />
+      </div>
+      <h1>Moodle</h1>
+    </div>
   )
 }
-
-export default Header

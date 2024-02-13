@@ -1,5 +1,6 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { LoginData, User } from '../types';
+
 
 const AuthService = {
   login: async ({ username , password }: LoginData) => {

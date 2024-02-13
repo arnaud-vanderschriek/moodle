@@ -1,21 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const SideBar = (items : any ) => {
+
+const SideBar = ({ items }: { items: { id: number; path: string; element: string }[] }) => {
   return (
     <nav>
       <div>
         <ul>
-          { items.map((item : any) => (
-            <li key={item.id}>{item.path}</li>
+          {Array.isArray(items) && items.map((item) => (
+            <li key={item.id}><Link to={`${item.path}`}>{item.path}</Link></li>
           ))}
         </ul>
-      </div>
-
-      <div>
-        
       </div>
     </nav>
   )
 }
 
-export default SideBar
+export default SideBar;

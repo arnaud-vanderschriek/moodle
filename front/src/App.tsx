@@ -1,50 +1,37 @@
-import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import {store} from './store';
-import Header from './components/Header';
-import SideBar from './components/SideBar';
-import Dashboard from './pages/Dashboard';
-import Studentdashboard from './pages/Studentdashboard';
-import Teacherdashboard from './pages/Teacherdashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import LoginForm from './components/LoginForm';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { store } from './store';
 
-function App() {
-  const isAuthenticated = store.getState().user.isAuthenticated;
+import LoginForm from './components/LoginForm';
+import StudentDashboard from './pages/Studentdashboard';
+import TeacherDashboard from './pages/Teacherdashboard';
+import AdminDashboard from './pages/AdminDashboard';
+import Dashboard from './pages/Dashboard';
+import NotFound from './components/NotFound';
+import ProtectedRoute from './components/ProtectedRoute';
 
+
+const App = () => {
   return (
     <Provider store={store}>
-      <div className="App">
-        <Router>
-          <div>
-            <Header />
-            <div className='container'>
-              <Routes>
-                <Route path='/' Component={LoginForm} />
-                {
-                  isAuthenticated ? (
-                    <>
-                      <SideBar />
-                      <Route path='/dashboard'>
-                        <Dashboard>
-                          {store.getState().user.userType === 0 && <Studentdashboard />}
-                          {store.getState().user.userType === 1 && <Teacherdashboard />}
-                          {store.getState().user.userType === 2 && <AdminDashboard />}
-                        </Dashboard>
-                      </Route>
-                    </>
-                  ) : (
-                    <Route path='/' Component={LoginForm} />
-                  )
-                }
-              </Routes>
-            </div>
-          </div>
-        </Router>
-      </div>
-    </Provider>  
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route 
+          path='/dashboard' 
+          element={<ProtectedRoute />}
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/student/*" element={<StudentDashboard />} />
+          <Route path="/dashboard/teacher/*" element={<TeacherDashboard />} />
+          <Route path="/dashboard/admin/*" element={<AdminDashboard />} />
+        </Route>
+        <Route element={<NotFound />} />
+      </Routes>
+    </Router>
+    </Provider>
   );
-}
+};
 
 export default App;

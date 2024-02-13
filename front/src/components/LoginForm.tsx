@@ -68,6 +68,7 @@ function SignIn(props: any) {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'center',
             alignItems: 'center',
           }}
         >
