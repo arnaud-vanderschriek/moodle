@@ -1,8 +1,8 @@
 export type User = {
+	id?: number,
 	username: string | FormDataEntryValue | null,
 	email?: string,
-	userType?: UserType,
-	isAuthenticated?: boolean
+	userType?: UserType
 }
 
 enum UserType {
@@ -12,6 +12,12 @@ enum UserType {
 }
 
 export type LoginData = {
-	username: FormDataEntryValue | null,
-	password: FormDataEntryValue | null
+	user: User | null,
+	isAuthenticated?: boolean,
+	token?: string | null
+}
+
+export type LoginFormData = {
+	username: string,
+	password: string,
 }

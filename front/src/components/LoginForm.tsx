@@ -1,4 +1,9 @@
 import * as React from 'react';
+import { connect, useDispatch } from 'react-redux';
+import {RootDispatch } from '../store';
+import { useNavigate } from 'react-router-dom';
+import { LoginFormData } from '../types';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,10 +18,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import Authentication from '../services/AuthService';
-import {RootDispatch } from '../store';
-import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { LoginData } from '../types';
 
 
 function Copyright(props: any) {
@@ -37,7 +38,7 @@ const defaultTheme = createTheme();
 
 function SignIn(props: any) {
   const navigate = useNavigate();
-  const { saveUserWithDispatch } = props;
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,16 +47,9 @@ function SignIn(props: any) {
     const username = data.get('username');
     const password = data.get('password');
 	
-    try {
-        // const response = await Authentication.login({ email, password });
-        saveUserWithDispatch({username, password})
-        //store.dispatch.auth.saveUser({username, password})
-        navigate("/dashboard");
-        // enregistrer la réponse dans le store 
-        // ====> Ici je dois gérer la réponse du service...
-        // peut etre appeller un autre service pour la redirection...
-    } catch (error) {
-        console.log(error);
+    const success = await dispatch.auth.loginUser({ username, password })
+    if(success) {
+      navigate('/')
     }
   };
 
@@ -135,7 +129,7 @@ function SignIn(props: any) {
 }
 
 const mapDispatch = (dispatch: RootDispatch) => ({
-  saveUserWithDispatch: (userData: LoginData) => dispatch.auth.saveUserWithDispatch(userData)
+  loginUser: (userData: LoginFormData) => dispatch.auth.loginUser(userData)
 })
 
 export default connect(null, mapDispatch)(SignIn)

@@ -1,13 +1,12 @@
 import { RematchDispatch } from '@rematch/core';
 import { User } from '../types';
 
-// type UsersState = Readonly<User[]>;
-// const INITIAL_STATE: UsersState = '';
+
 const INITIAL_STATE: User = {
+    id: 0,
     username: '',
     email: '',
     userType: 0,
-    isAuthenticated: false
 };
 
 const user = {
@@ -20,7 +19,7 @@ const user = {
     
   },
   effects: (dispatch: RematchDispatch<any>) => ({
-    // utiliser le dispatcher pour gérer mes actions ...
+    
   }),
 };
 

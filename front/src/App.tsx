@@ -9,7 +9,7 @@ import TeacherDashboard from './pages/Teacherdashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Dashboard from './pages/Dashboard';
 import NotFound from './components/NotFound';
-import ProtectedRoute from './components/ProtectedRoute';
+import AuthService from './services/AuthService';
 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/" element={<LoginForm />} />
         <Route 
           path='/dashboard' 
-          element={<ProtectedRoute />}
+          element={<AuthService />}
         >
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/student/*" element={<StudentDashboard />} />

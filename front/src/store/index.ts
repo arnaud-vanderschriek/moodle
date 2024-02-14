@@ -1,7 +1,7 @@
 import { init, RematchDispatch, RematchRootState } from '@rematch/core';
-
 import auth from './auth';
 import user from './user';
+
 
 const models = {
     user,
