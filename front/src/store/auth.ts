@@ -1,6 +1,6 @@
 import { RematchDispatch } from '@rematch/core';
-import { LoginData, LoginFormData } from '../types';
 import apiService from '../services/ApiService';
+import { LoginData, LoginFormData } from '../types';
 
 
 const INITIAL_STATE: LoginData = {
@@ -18,7 +18,7 @@ const auth = {
           ...state,
           user,
           token,
-          isAuthenticate: true
+          isAuthenticated: true
         }
      },
      logout: (state: LoginData) => {
@@ -34,7 +34,7 @@ const auth = {
     loginUser: async ({ username, password }: LoginFormData ) => {
       try {
         const response = await apiService.post('/Security', { username, password });
-        const { user, token } = response.data;
+        const { user, token } = await response.data;
 
         dispatch.auth.login({user, token});
         dispatch.user.saveUser({user, token});

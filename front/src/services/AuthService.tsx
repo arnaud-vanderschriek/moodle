@@ -1,12 +1,10 @@
 import { connect } from 'react-redux'
-import { RootState } from '../store'
 import { Navigate, Outlet } from 'react-router-dom'
+import { RootState } from '../store'
 
 
 const AuthService = ({ isAuthenticated }: any) => {
-  console.log("taratata")
   if(!isAuthenticated) {
-    console.log("test", "valeur de isAuthenticated: ", isAuthenticated)
     return <Navigate to={"/"} />;
   }
 

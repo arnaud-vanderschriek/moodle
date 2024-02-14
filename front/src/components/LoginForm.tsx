@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import {RootDispatch } from '../store';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LoginFormData } from '../types';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,7 +15,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import Authentication from '../services/AuthService';
 
 
 function Copyright(props: any) {
@@ -33,22 +30,19 @@ function Copyright(props: any) {
   );
 }
 
-
 const defaultTheme = createTheme();
 
-function LoginForm(props: any) {
+function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const success = await dispatch.auth.loginUser({ username, password })
-    if(success) {
-      navigate('/')
-    }
+    
+    await dispatch.auth.loginUser({ username, password })
+    navigate('/dashboard')
   };
 
   return (
@@ -84,6 +78,7 @@ function LoginForm(props: any) {
               autoComplete="username"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
+              error={true}
             />
             <TextField
               margin="normal"
@@ -127,11 +122,5 @@ function LoginForm(props: any) {
     </ThemeProvider>
   );
 }
-
-//const mapDispatch = (dispatch: RootDispatch) => ({
-//  loginUser: (userData: LoginFormData) => dispatch.auth.loginUser(userData)
-//})
-
-//export default connect(null, mapDispatch)(SignIn)
 
 export default LoginForm;
