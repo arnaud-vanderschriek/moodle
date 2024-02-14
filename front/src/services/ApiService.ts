@@ -16,6 +16,7 @@ apiService.interceptors.request.use(
     return config;
   },
   error => {
+    console.log("error in apiService: ", error)
     return Promise.reject(error);
   }
 )

@@ -6,14 +6,14 @@ const INITIAL_STATE: User = {
     id: 0,
     username: '',
     email: '',
-    userType: 0,
+    roleID: 0,
 };
 
 const user = {
   name: 'user',
   state: INITIAL_STATE,
   reducers: {
-    saveUser: (state: User, payload: User) => { 
+    saveUser: (state: User, payload: User) => {   
         return { ...state, ...payload }
      },
     

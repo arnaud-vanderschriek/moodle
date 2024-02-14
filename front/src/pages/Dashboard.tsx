@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { store } from '../store';
 import { useNavigate } from 'react-router-dom';
-// import Studentdashboard from './Studentdashboard';
+
 
 const Dashboard = ({ children }: any) => {
-  const userType = store.getState().user.userType;
+  const roleID = store.getState().user.roleID;
   const navigate = useNavigate();
   
   useEffect(() => {
-
-    switch (userType) {
+    switch (roleID) {
       case 0:
         navigate('/dashboard/student/*');
         break

@@ -2,12 +2,13 @@ export type User = {
 	id?: number,
 	username: string | FormDataEntryValue | null,
 	email?: string,
-	userType?: UserType
+	roleID?: UserType,
+	assessmentResults?: null
 }
 
 enum UserType {
-	student,
 	teacher,
+	student,
 	admin
 }
 

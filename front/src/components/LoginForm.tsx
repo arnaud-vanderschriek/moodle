@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import {RootDispatch } from '../store';
 import { useNavigate } from 'react-router-dom';
@@ -36,17 +36,15 @@ function Copyright(props: any) {
 
 const defaultTheme = createTheme();
 
-function SignIn(props: any) {
+function LoginForm(props: any) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget); 
-    const username = data.get('username');
-    const password = data.get('password');
-	
     const success = await dispatch.auth.loginUser({ username, password })
     if(success) {
       navigate('/')
@@ -84,6 +82,7 @@ function SignIn(props: any) {
               label="Username"
               name="username"
               autoComplete="username"
+              onChange={(e) => setUsername(e.target.value)}
               autoFocus
             />
             <TextField
@@ -94,6 +93,7 @@ function SignIn(props: any) {
               label="Password"
               type="password"
               id="password"
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -128,9 +128,10 @@ function SignIn(props: any) {
   );
 }
 
-const mapDispatch = (dispatch: RootDispatch) => ({
-  loginUser: (userData: LoginFormData) => dispatch.auth.loginUser(userData)
-})
+//const mapDispatch = (dispatch: RootDispatch) => ({
+//  loginUser: (userData: LoginFormData) => dispatch.auth.loginUser(userData)
+//})
 
-export default connect(null, mapDispatch)(SignIn)
+//export default connect(null, mapDispatch)(SignIn)
 
+export default LoginForm;

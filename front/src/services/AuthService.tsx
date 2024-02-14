@@ -4,7 +4,9 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 
 const AuthService = ({ isAuthenticated }: any) => {
+  console.log("taratata")
   if(!isAuthenticated) {
+    console.log("test", "valeur de isAuthenticated: ", isAuthenticated)
     return <Navigate to={"/"} />;
   }
 

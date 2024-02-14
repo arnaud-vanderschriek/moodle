@@ -33,10 +33,12 @@ const auth = {
   effects: (dispatch: RematchDispatch<any>) => ({
     loginUser: async ({ username, password }: LoginFormData ) => {
       try {
-        const response = await apiService.post('/login', { username, password });
-        const { user, token } = response.data 
+        const response = await apiService.post('/Security', { username, password });
+        const { user, token } = response.data;
 
-        dispatch.auth.login({user, token})
+        dispatch.auth.login({user, token});
+        dispatch.user.saveUser({user, token});
+
       } catch (error) {
         console.log('Erreur de connexion:', error);
       }
