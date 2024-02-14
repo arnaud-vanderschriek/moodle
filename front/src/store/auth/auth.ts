@@ -1,6 +1,6 @@
 import { RematchDispatch } from '@rematch/core';
-import apiService from '../services/ApiService';
-import { LoginData, LoginFormData } from '../types';
+import apiService from '../../services/ApiService';
+import { LoginData, LoginFormData } from '../../types';
 
 
 const INITIAL_STATE: LoginData = {
@@ -41,6 +41,7 @@ const auth = {
 
       } catch (error) {
         console.log('Erreur de connexion:', error);
+        dispatch.authErrors.setErrors(error);
       }
     }
   }),

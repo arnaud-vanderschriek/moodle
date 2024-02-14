@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../store';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -32,11 +33,12 @@ function Copyright(props: any) {
 
 const defaultTheme = createTheme();
 
-function LoginForm() {
+function LoginForm(props: any) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,7 +80,7 @@ function LoginForm() {
               autoComplete="username"
               onChange={(e) => setUsername(e.target.value)}
               autoFocus
-              error={true}
+              error={props.isError}
             />
             <TextField
               margin="normal"
@@ -90,6 +92,7 @@ function LoginForm() {
               id="password"
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
+              error={props.isError}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -123,4 +126,8 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+const mapState = (state: RootState) => ({
+  isError: state.authErrors.isError
+})
+
+export default connect(mapState, null)(LoginForm);

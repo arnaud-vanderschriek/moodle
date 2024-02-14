@@ -18,7 +18,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../components/StudentDashboardContent/StudentNavigationMenu';
 import { store } from '../store';
-import { useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Courses from "../components/StudentDashboardContent/Courses";
 import FollowingCourses from '../components/StudentDashboardContent/FollowingCourses';
 
@@ -172,7 +172,21 @@ export default function Dashboard() {
                 >
                  { location.pathname === '/dashboard/student/courses' && <Courses /> }
                  { location.pathname === '/dashboard/student/following_courses' && <FollowingCourses /> }
-  
+                 <Router>
+                    <div>
+                      <Routes>
+                        <Route path='/courses'>
+                          <Courses />
+                        </Route>
+                        <Route path='/following_courses'>
+                          <FollowingCourses />
+                        </Route>
+                        <Route path='/about'>
+                          <Courses />
+                        </Route>
+                      </Routes>
+                    </div>
+                  </Router>
                 </Paper>
               </Grid>
 
