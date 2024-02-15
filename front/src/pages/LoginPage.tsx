@@ -21,9 +21,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {'Arnaud Vanderschrieck © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Moodle
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,7 +33,7 @@ function Copyright(props: any) {
 
 const defaultTheme = createTheme();
 
-function LoginForm(props: any) {
+function LoginPage(props: any) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -130,4 +130,4 @@ const mapState = (state: RootState) => ({
   isError: state.authErrors.isError
 })
 
-export default connect(mapState, null)(LoginForm);
+export default connect(mapState, null)(LoginPage);

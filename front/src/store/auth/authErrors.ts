@@ -17,12 +17,24 @@ const authErrors = {
         message: error.message,
         isError: true
       }
+    }, 
+    cleanErrors: (state: any) => {
+      return {
+        ...state,
+        code: '',
+        message: '',
+        isError: false
+      }
     }
   },
   effects: (dispatch: RematchDispatch<any>) => ({
-    setErrors: (error: any) => {
+    setLoginErrors: (error: any) => {
+      console.log("tetetetete")
       dispatch.authErrors.setErrors(error)
-    }
+    },
+    cleanLoginErrors: () => {
+      dispatch.authErrors.cleanErrors()
+    },
   }),
 };
 

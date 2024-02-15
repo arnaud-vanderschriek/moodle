@@ -26,13 +26,14 @@ const auth = {
           ...state,
           user: null,
           token: null,
-          isAuthencated: false
+          isAuthenticated: false
         }   
       }    
   },
   effects: (dispatch: RematchDispatch<any>) => ({
     loginUser: async ({ username, password }: LoginFormData ) => {
       try {
+        dispatch.authErrors.cleanLoginErrors();
         const response = await apiService.post('/Security', { username, password });
         const { user, token } = await response.data;
 
@@ -40,11 +41,13 @@ const auth = {
         dispatch.user.saveUser({user, token});
 
       } catch (error) {
-        console.log('Erreur de connexion:', error);
         dispatch.authErrors.setErrors(error);
       }
     }
   }),
+  logoutUser: (dispatch: RematchDispatch<any>) => {
+      dispatch.auth.logout();
+  }
 };
 
 export default auth;

@@ -12,15 +12,16 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { MainListItems, secondaryListItems } from '../components/StudentDashboardContent/StudentNavigationMenu';
 import { store } from '../store';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation, useNavigate } from 'react-router-dom';
 import Courses from "../components/StudentDashboardContent/Courses";
 import FollowingCourses from '../components/StudentDashboardContent/FollowingCourses';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useDispatch } from 'react-redux';
 
 
 const drawerWidth: number = 240;
@@ -78,7 +79,9 @@ const defaultTheme = createTheme();
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
   const [ selectedMenuItem, setSelectedMenuItem ] = useState('');
-  const [ activeComponent, setActiveComponent] = React.useState(null);
+  const [ activeComponent, setActiveComponent] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -87,7 +90,13 @@ export default function Dashboard() {
   };
 
   const handleMenuItem = (menuItem: any) => {
+    console.log(menuItem)
     setSelectedMenuItem(menuItem)
+  }
+
+  const logOut = () => {
+    dispatch.auth.logout()
+    navigate("/");
   }
 
   return (
@@ -97,7 +106,7 @@ export default function Dashboard() {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px',
             }}
           >
             <IconButton
@@ -107,7 +116,7 @@ export default function Dashboard() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: '36px',
-                ...(open && { display: 'none' }),
+                ...(open && { display: 'no  ne' }),
               }}
             >
               <MenuIcon />
@@ -119,11 +128,16 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              {`Student Dashboard, Welcome ${store.getState().user.username}`}
+              {`Moodle - Student Dashboard`}
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton color="inherit" onClick={() => logOut() }>
+              <Badge color="secondary">
+                <LogoutIcon />
               </Badge>
             </IconButton>
           </Toolbar>
@@ -163,22 +177,8 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={1}>
-             <Grid item xs={12} md={12} lg={12}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 800,
-                  }}
-                >
-                  {selectedMenuItem === 'courses' && <Courses /> }
-  
-                </Paper>
-              </Grid>
-
+                {selectedMenuItem === 'courses' && <Courses /> }
+                {selectedMenuItem === 'following' && <FollowingCourses /> }
             </Grid>
           </Container>
         </Box>

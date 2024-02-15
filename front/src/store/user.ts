@@ -4,7 +4,7 @@ import { User } from '../types';
 
 const INITIAL_STATE: User = {
     id: 0,
-    username: '',
+    name: '',
     email: '',
     roleID: 0,
 };

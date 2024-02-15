@@ -1,6 +1,6 @@
 export type User = {
 	id?: number,
-	username: string | FormDataEntryValue | null,
+	name: string,
 	email?: string,
 	roleID?: UserType,
 	assessmentResults?: null
@@ -21,4 +21,13 @@ export type LoginData = {
 export type LoginFormData = {
 	username: string,
 	password: string,
+}
+
+export type Courses = {
+	id: number,
+	name: string,
+	description: string,
+	startDate: Date,
+	endDate: Date,
+	userID: number,
 }

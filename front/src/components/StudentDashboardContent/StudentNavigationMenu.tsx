@@ -15,21 +15,19 @@ import { Link } from 'react-router-dom';
 export const MainListItems = ({ onClick }: any) => {
   return (
   <React.Fragment>
-      <ListItemButton onClick={onClick('courses')}>
-        <ListItemIcon>
-          <DashboardIcon />
+      <ListItemButton onClick={() => onClick('courses')}>
+        <ListItemIcon>        
+          <ShoppingCartIcon />
         </ListItemIcon>
           <ListItemText primary="Courses" />
       </ListItemButton>
-    <ListItemButton>
+      <ListItemButton onClick={() => onClick('following')}>
       <ListItemIcon>
-        <ShoppingCartIcon />
+       <DashboardIcon />
       </ListItemIcon>
-        <Link to="/dashboard/student/following_courses" >
-        <ListItemText primary="Following Courses" />
-        </Link>
+        <ListItemText primary="Calendar" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton onClick={() => onClick('modules')}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>

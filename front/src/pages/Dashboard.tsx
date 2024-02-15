@@ -10,10 +10,10 @@ const Dashboard = ({ children }: any) => {
   useEffect(() => {
     switch (roleID) {
       case 0:
-        navigate('/dashboard/student/*');
+        navigate('/dashboard/student');
         break
       case 1:
-        navigate('/dashboard/teacher/*');
+        navigate('/dashboard/teacher');
         break;
       case 2:
         navigate('/dashboard/admin');

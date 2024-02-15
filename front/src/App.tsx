@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-import LoginForm from './components/LoginForm';
+import LoginPage from './pages/LoginPage';
 import StudentDashboard from './pages/Studentdashboard';
 import TeacherDashboard from './pages/Teacherdashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Dashboard from './pages/Dashboard';
-import NotFound from './components/NotFound';
+import NotFound from './pages/NotFound';
 import AuthService from './services/AuthService';
 
 
@@ -17,17 +17,17 @@ const App = () => {
     <Provider store={store}>
     <Router>
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="*" element={<NotFound />} />
         <Route 
           path='/dashboard' 
           element={<AuthService />}
         >
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/student/*" element={<StudentDashboard />} />
-          <Route path="/dashboard/teacher/*" element={<TeacherDashboard />} />
-          <Route path="/dashboard/admin/*" element={<AdminDashboard />} />
+          <Route path="/dashboard/student" element={<StudentDashboard />} />
+          <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
+          <Route path="/dashboard/admin" element={<AdminDashboard />} />
         </Route>
-        <Route element={<NotFound />} />
       </Routes>
     </Router>
     </Provider>
