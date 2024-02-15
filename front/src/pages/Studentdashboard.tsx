@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../components/StudentDashboardContent/StudentNavigationMenu';
+import { MainListItems, secondaryListItems } from '../components/StudentDashboardContent/StudentNavigationMenu';
 import { store } from '../store';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Courses from "../components/StudentDashboardContent/Courses";
@@ -76,7 +76,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [ selectedMenuItem, setSelectedMenuItem ] = useState('');
   const [ activeComponent, setActiveComponent] = React.useState(null);
 
   const location = useLocation();
@@ -85,6 +86,9 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
+  const handleMenuItem = (menuItem: any) => {
+    setSelectedMenuItem(menuItem)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -139,7 +143,7 @@ export default function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            { <MainListItems onClick={handleMenuItem} /> }
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
@@ -170,23 +174,8 @@ export default function Dashboard() {
                     height: 800,
                   }}
                 >
-                 { location.pathname === '/dashboard/student/courses' && <Courses /> }
-                 { location.pathname === '/dashboard/student/following_courses' && <FollowingCourses /> }
-                 <Router>
-                    <div>
-                      <Routes>
-                        <Route path='/courses'>
-                          <Courses />
-                        </Route>
-                        <Route path='/following_courses'>
-                          <FollowingCourses />
-                        </Route>
-                        <Route path='/about'>
-                          <Courses />
-                        </Route>
-                      </Routes>
-                    </div>
-                  </Router>
+                  {selectedMenuItem === 'courses' && <Courses /> }
+  
                 </Paper>
               </Grid>
 

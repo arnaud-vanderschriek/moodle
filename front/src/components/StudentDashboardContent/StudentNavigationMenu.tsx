@@ -12,15 +12,14 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
 
 
-export const mainListItems = (
+export const MainListItems = ({ onClick }: any) => {
+  return (
   <React.Fragment>
-      <ListItemButton>
+      <ListItemButton onClick={onClick('courses')}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <Link to="/dashboard/student/courses" >
           <ListItemText primary="Courses" />
-        </Link>
       </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
@@ -49,7 +48,9 @@ export const mainListItems = (
       <ListItemText primary="" />
     </ListItemButton> */}
   </React.Fragment>
-);
+  )
+}
+;
 
 export const secondaryListItems = (
   <React.Fragment>
