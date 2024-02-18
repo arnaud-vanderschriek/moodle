@@ -1,5 +1,4 @@
 import { Box, Container } from '@mui/material'
-import React from 'react'
 import Calendar from '../Calendar'
 
 const FollowingCourses = () => {

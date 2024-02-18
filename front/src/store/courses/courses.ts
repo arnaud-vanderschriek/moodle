@@ -23,15 +23,24 @@ const courses = {
   },
   effects: (dispatch: RematchDispatch<any>) => ({
     GetAllCourses: async () => {
-        try {
-            const response = await apiService.get("/Courses");
-            const data = await response.data
+      try {
+          const response = await apiService.get("/Courses");
+          const data = await response.data
 
-            console.log(data, "Data in store")
-            return data;
-        } catch (error) {
-            console.log("error in courses store: ", error)
-        }
+          return data;
+      } catch (error) {
+          console.log("error in courses store: ", error)
+      }
+    },
+    RegisterCourse: async (payload: Courses) => {
+      try {
+        const response = await apiService.post("Courses", payload);
+        const data = await response.data;
+
+        console.log(data, 'data in RegisterCourse func');
+      } catch (error) {
+        console.log("error, impossible d'ajouter un cours.");
+      }
     }
   }),
 };

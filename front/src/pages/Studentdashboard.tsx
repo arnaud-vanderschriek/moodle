@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { SideBar } from '../components/SideBar';
+import { secondaryListItems } from '../components/SideBar';
+
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -15,13 +20,10 @@ import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { MainListItems, secondaryListItems } from '../components/StudentDashboardContent/StudentNavigationMenu';
-import { store } from '../store';
-import { BrowserRouter as Router, useLocation, useNavigate } from 'react-router-dom';
-import Courses from "../components/StudentDashboardContent/Courses";
-import FollowingCourses from '../components/StudentDashboardContent/FollowingCourses';
+import Courses from "../components/StudentContainer/Courses";
+import FollowingCourses from '../components/StudentContainer/FollowingCourses';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useDispatch } from 'react-redux';
+import CoursesManagement from '../components/AdminContainer/CoursesManagement';
 
 
 const drawerWidth: number = 240;
@@ -80,17 +82,20 @@ export default function Dashboard() {
   const [open, setOpen] = useState(false);
   const [ selectedMenuItem, setSelectedMenuItem ] = useState('');
   const [ activeComponent, setActiveComponent] = useState(null);
+
+  const links = useSelector((state: any) => state.links.links);
+  const userStatus = useSelector((state: any) => state.user.roleID);
+  const filtredLinks = links.filter((elem: any) => elem.roleID === userStatus)
+
+  console.log(filtredLinks, "filtredLinks")
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const location = useLocation();
-
+    
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   const handleMenuItem = (menuItem: any) => {
-    console.log(menuItem)
     setSelectedMenuItem(menuItem)
   }
 
@@ -157,7 +162,7 @@ export default function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            { <MainListItems onClick={handleMenuItem} /> }
+            <SideBar onClick={handleMenuItem} links={links} />
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
@@ -179,6 +184,7 @@ export default function Dashboard() {
             <Grid container spacing={1}>
                 {selectedMenuItem === 'courses' && <Courses /> }
                 {selectedMenuItem === 'following' && <FollowingCourses /> }
+                {selectedMenuItem === "modules" && <CoursesManagement /> }
             </Grid>
           </Container>
         </Box>

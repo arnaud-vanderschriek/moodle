@@ -17,13 +17,12 @@ const Courses = () => {
   
   const fetchData = async () => {
     const response = await dispatch.courses.GetAllCourses();
-    setData(response)
+    setData(response);
   }
 
   const searchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filtredData = data.filter((user) => (user.name).toLowerCase().includes(searchTerm));
-    setSearchData(filtredData);
+    setSearchData(data.filter((user) => 
+      (user.name).toLowerCase().includes(e.target.value.toLowerCase())));
   }
 
   return ( 
@@ -39,27 +38,27 @@ const Courses = () => {
         >
           <Box sx={{display: 'flex'}}>
             <Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
-                <h2>Moodle Courses list.</h2>
-                <p>Please select one or several courses.</p>
-                <TextField
-                  margin="normal"
-                    required
-                    fullWidth
-                    id="search"
-                    label="Search Courses"
-                    name="search_courses"
-                    autoComplete="search-courses"
-                    onChange={searchBar}
-                    autoFocus
-                  />
-                  <BasicTable data={ searchData.length == 0 ? data : searchData } />
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Inscription
-                  </Button>
+              <h2>Moodle Courses list.</h2>
+              <p>Please select one or several courses.</p>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="search"
+                label="Search Courses"
+                name="search_courses"
+                autoComplete="search-courses"
+                onChange={searchBar}
+                autoFocus
+              />
+              <BasicTable data={ searchData.length == 0 ? data : searchData } />
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Inscription
+              </Button>
             </Container>
           </Box>
         </Paper>

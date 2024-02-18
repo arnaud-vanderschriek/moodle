@@ -29,7 +29,6 @@ const authErrors = {
   },
   effects: (dispatch: RematchDispatch<any>) => ({
     setLoginErrors: (error: any) => {
-      console.log("tetetetete")
       dispatch.authErrors.setErrors(error)
     },
     cleanLoginErrors: () => {

@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage';
 import StudentDashboard from './pages/Studentdashboard';
 import TeacherDashboard from './pages/Teacherdashboard';
 import AdminDashboard from './pages/AdminDashboard';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/DashboardContainer';
 import NotFound from './pages/NotFound';
 import AuthService from './services/AuthService';
 

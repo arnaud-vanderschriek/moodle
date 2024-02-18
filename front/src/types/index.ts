@@ -3,7 +3,8 @@ export type User = {
 	name: string,
 	email?: string,
 	roleID?: UserType,
-	assessmentResults?: null
+	assessmentResults?: null,
+	learningProgress?: null,
 }
 
 enum UserType {
@@ -24,10 +25,10 @@ export type LoginFormData = {
 }
 
 export type Courses = {
-	id: number,
+	id?: number,
 	name: string,
 	description: string,
 	startDate: Date,
 	endDate: Date,
-	userID: number,
+	userID?: number,
 }

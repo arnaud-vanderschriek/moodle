@@ -13,6 +13,7 @@
 
 #files 
 .env
+idea.txt
 
 # misc
 .DS_Store
