@@ -4,24 +4,29 @@ import { useNavigate } from 'react-router-dom';
 import NotFound from './NotFound';
 
 
-const DashboardContainer = () => {
-  const roleID = store.getState().user.roleID;
+const DashboardContainer = ({ children }: any) => {
+  const roleID = store.getState().user.user.roleID;
   const navigate = useNavigate();
-
-  switch (roleID) {
-    case 0:
-      navigate('/dashboard/student');
-      break
-    case 1:
-      navigate('/dashboard/teacher');
-      break;
-    case 2:
-      navigate('/dashboard/admin');
-      break;
-  }
+  
+  useEffect(() => {
+    console.log(roleID, 'roleId in DashboardContainer')
+    switch (roleID) {
+      case 1:
+        navigate('/dashboard/student');
+        break
+      case 2:
+        navigate('/dashboard/teacher');
+        break;
+      case 3:
+        navigate('/dashboard/admin');
+        break;
+    }
+  })
 
   return (
-     <NotFound />
+    <>
+      { children }
+    </>
   );
 };
 

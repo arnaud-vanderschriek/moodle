@@ -13,11 +13,18 @@ import { User } from '../../types';
 // public ICollection<AssessmentResult> AssessmentResults { get; set; } = null!;
 // public ICollection<LearningProgress> LearningProgress { get; set; } = null!;
 
-const INITIAL_STATE: User = {
-    id: 0,
-    name: '',
-    email: '',
-    roleID: 0,
+const INITIAL_STATE: any = {
+  user: {
+    id: null,
+    userName: "",
+    email:"",
+    roleID: null,
+    cursusId: null,
+    roles:null,
+    cursus:null
+  } as User,
+  
+  token: ""
 };
 
 const user = {

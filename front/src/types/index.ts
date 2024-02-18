@@ -1,16 +1,17 @@
 export type User = {
-	id?: number,
-	name: string,
-	email?: string,
-	roleID?: UserType,
-	assessmentResults?: null,
-	learningProgress?: null,
+	id: null | number,
+    userName: "",
+    email:"",
+    roleID: UserType | null,
+    cursusId: null | number,
+    roles:null,
+    cursus:null
 }
 
 enum UserType {
-	teacher,
-	student,
-	admin
+	student = 1,
+	teacher = 2,
+	admin = 3
 }
 
 export type LoginData = {

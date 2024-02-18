@@ -7,8 +7,8 @@ import { User } from '../../types';
 
 const Courses = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [data, setData] = useState<User[]>([]);
-  const [searchData, setSearchData] = useState<User[]>([]);
+  const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,11 +18,12 @@ const Courses = () => {
   const fetchData = async () => {
     const response = await dispatch.courses.GetAllCourses();
     setData(response);
+    console.log(data, "data in fetchData")
   }
 
   const searchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchData(data.filter((user) => 
-      (user.name).toLowerCase().includes(e.target.value.toLowerCase())));
+    // setSearchData(data.filter((courses) => 
+    //   (courses.name).toLowerCase().includes(e.target.value.toLowerCase())));
   }
 
   return ( 
