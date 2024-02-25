@@ -6,6 +6,9 @@ import Box from '@mui/material/Box';
 import AddCourses from './AddCourses';
 import { Grid } from '@mui/material';
 import AddUser from './AddUser';
+import AddModules from './AddModules';
+import { Send } from '@mui/icons-material';
+import SendMail from './SendMail';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,19 +55,24 @@ export default function TabPanel() {
         <h2>Registration.</h2>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Course" {...a11yProps(0)} />
-          <Tab label="User" {...a11yProps(1)} />
-          <Tab label="IDK" {...a11yProps(2)} />
+          <Tab label="Users" {...a11yProps(0)} />
+          <Tab label="Send Mail" {...a11yProps(1)} />
+          <Tab label="Courses" {...a11yProps(2)} />
+          <Tab label="Modules" {...a11yProps(3)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <AddCourses />
+        <AddUser />
+
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <AddUser />
+        <SendMail />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
+        <AddCourses />
+      </CustomTabPanel> 
+      <CustomTabPanel value={value} index={3}>
+        <AddModules />
       </CustomTabPanel>
     </Box>
   );

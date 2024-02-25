@@ -1,26 +1,24 @@
-import { Grid, Paper } from '@mui/material'
-import React from 'react'
-import Calendar from '../Calendar'
+import React, { useState, useEffect } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
+import { Button } from '@mui/material';
+import { EventInput } from '@fullcalendar/core';
 
-const CalendarTeacher = () => {
+const CalendarTeacher = (events: any) => {
   return (
-    <React.Fragment>
-    <Grid item xs={12} md={12} lg={12}>
-      <Paper
-        sx={{
-          p: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          height: 'auto',
-        }}
-      >
-        <h1>Sessions date.</h1>
-        <Calendar />
-      </Paper>
-      </Grid>
- 
-  </React.Fragment>
-  )
-}
+    <FullCalendar
+      themeSystem="tailwind"
+      plugins={ [ interactionPlugin, dayGridPlugin ]}
+      initialView="dayGridMonth"
+      height="400px"
+      aspectRatio={2}
+      editable={true}
+      droppable={true}
+      selectable={true}
+    
+    />
+  );
+};
 
-export default CalendarTeacher
+export default CalendarTeacher;

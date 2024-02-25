@@ -2,32 +2,69 @@ import { Box, Button, Container, Grid, Paper, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import DataTable from '../DataTable';
 import BasicTable from '../BasicTable';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { User } from '../../types';
+import StudentCalendar from './StudentCalendar';
+import axios from 'axios';
 
 const Courses = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [ cursus, setCursus] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([])
   const [searchData, setSearchData] = useState([]);
   const dispatch = useDispatch();
-
+  const userId = useSelector((state:any) => state.user.user.id);
+  
   useEffect(() => {
     fetchData();
+    fetchCursus();
   }, [])
+  
+  const fetchCursus = async ( ) => {
+    const response = await axios.get(`https://localhost:7155/api/users/${userId}/cursus`);
+    const data = response.data;
+    setCursus(data);
+  }
   
   const fetchData = async () => {
     const response = await dispatch.courses.GetAllCourses();
     setData(response);
-    console.log(data, "data in fetchData")
   }
 
   const searchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setSearchData(data.filter((courses) => 
-    //   (courses.name).toLowerCase().includes(e.target.value.toLowerCase())));
+    setSearchData(data.filter((courses: any) => 
+      (courses.name).toLowerCase().includes(e.target.value.toLowerCase())));
+  }
+
+  const handleCourses = (event: any, data: any) => {
+    if(event.target.checked === true) {
+      setSelectedCourses((prevCourses):any => [...prevCourses, data])
+    }
+    else {
+      setSelectedCourses((prevCourses):any => prevCourses.filter((elem:any) => elem.id !== data.id));
+    }
+
+  }
+
+  const handleRegistrationCourses = () => {
+    console.log(selectedCourses)
   }
 
   return ( 
     <React.Fragment>
+        <Grid item xs={12} md={12} lg={12}>
+        <Paper
+          sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'auto',
+          }}
+        >
+          <StudentCalendar />
+        </Paper>
+        </Grid>
       <Grid item xs={12} md={12} lg={8}>
         <Paper
           sx={{
@@ -39,8 +76,7 @@ const Courses = () => {
         >
           <Box sx={{display: 'flex'}}>
             <Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
-              <h2>Moodle Courses list.</h2>
-              <p>Please select one or several courses.</p>
+              <h2>All Courses.</h2>
               <TextField
                 margin="normal"
                 required
@@ -52,11 +88,12 @@ const Courses = () => {
                 onChange={searchBar}
                 autoFocus
               />
-              <BasicTable data={ searchData.length == 0 ? data : searchData } />
+              <BasicTable data={ searchData.length == 0 ? data : searchData } selectCourse={handleCourses} />
               <Button
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleRegistrationCourses}
               >
                 Inscription
               </Button>
@@ -75,8 +112,8 @@ const Courses = () => {
           >
             <Box sx={{display: 'flex'}}>
               <Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
-                  <h2>Following Courses.</h2>  
-                  <DataTable />
+                  <h2>Following Cursus.</h2>  
+                  <DataTable cursus={cursus} />
               </Container>
             </Box>
         </Paper>

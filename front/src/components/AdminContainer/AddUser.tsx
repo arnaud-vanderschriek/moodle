@@ -13,6 +13,13 @@ const AddUser = () => {
     event.preventDefault();
 	}
 
+	const data = [
+		{ firstname: "Michel", lastname: "VanderDonck", cours: "ASP.NET"},
+		{ firstname: "Etienne", lastname: "Poulain", cours: "Javascript"},
+		{ firstname: "Karim", lastname: "El Rahbi", cours: "React"},
+		{ firstname: "Yuong", lastname: "Yuan", cours: "Python"},
+	]
+
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1}}>
 			<h3>Adding User...</h3>
@@ -26,38 +33,75 @@ const AddUser = () => {
           }}
         >
           <Box>
-            <Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
-							<TextField
-							
-								margin="normal"
-								required
-								fullWidth
-								id="lastname"
-								label="Last name"
-								name="lastname"
-								autoComplete="lastname"
-								autoFocus
-							/>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								id="firstname"
-								label="firstname"
-								name="firstname"
-								autoComplete='firstname'
-							/> 
+            <Container>
+							<Grid container spacing={6}>
+								<Grid item lg={4}>
+									<TextField
+										margin="normal"
+										required
+										id="lastname"
+										label="Last name"
+										name="Lastname"
+										autoComplete="lastname"
+										autoFocus
+									/>
+								</Grid>
+								<Grid item lg={4}>
+									<TextField
+										margin="normal"
+										required
+										id="firstname"
+										label="Firstname"
+										name="firstname"
+										autoComplete='firstname'
+									/> 	
+								</Grid>
+							</Grid>
+						</Container>		
+						<Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
+							<Grid container spacing={6}>
+								<Grid item lg={4}>
+									<TextField
+										margin="normal"
+										required
+										id="username"
+										label="Username"
+										name="username"
+										autoComplete='username'
+									/> 
+								</Grid>						
+								<Grid item lg={4}>
+									<TextField
+										type='email'
+										margin="normal"
+										required
+										id="email"
+										label="Email"
+										name="email"
+										autoComplete='email'
+									/> 
+								</Grid>
+							</Grid>
 						</Container>		
 						<Container>
 							<TextField
 								margin="normal"
+								select
 								required
 								fullWidth
-								id="prof"
+								id=""
 								label="Professeur"
 								name="prof"
 								autoComplete='prof'
-							/>
+							>
+								{
+									data.map((elem, index): any => (
+										<option key={index} value={elem.lastname}>
+										{elem.cours}
+									</option>
+									))
+								}
+							</TextField>
 							<Button
 								type="submit"
 								variant="contained"

@@ -25,12 +25,12 @@ import FollowingCourses from '../components/StudentContainer/FollowingCourses';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CoursesManagement from '../components/AdminContainer/CoursesManagement';
 import OverView from '../components/StudentContainer/OverView';
-import CalendarTeacher from '../components/TeacherContainer/CalendarTeacher';
 import Download from '../components/TeacherContainer/Download';
 import Upload from '../components/TeacherContainer/Upload';
 import FeedBack from '../components/TeacherContainer/FeedBack';
 import Notes from '../components/TeacherContainer/Notes';
 import Learning from '../components/TeacherContainer/Learning';
+import CalendarTeacher from '../components/TeacherContainer/CalendarTeacher';
 
 
 const drawerWidth: number = 240;

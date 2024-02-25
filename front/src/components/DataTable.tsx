@@ -26,21 +26,18 @@ const rows = [
   createData('NodeJS',  "15-01-2024",  "15-01-2024", "Angelina", 3.9),
 ];
 
-export default function BasicTable() {
+export default function BasicTable({cursus}:any) {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ width: 'auto' }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Courses Name</TableCell>
             <TableCell align="right">Start Date</TableCell>
-            <TableCell align="right">End Date</TableCell>
-            <TableCell align="right">Professeur</TableCell>
-            <TableCell align="right">Local</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {cursus.map((row:any) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -49,9 +46,6 @@ export default function BasicTable() {
                  {row.name}
               </TableCell>
               <TableCell align="right">{row.startDate}</TableCell>
-              <TableCell align="right">{row.endDate}</TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.userID}</TableCell>
             </TableRow>
           ))}
         </TableBody>

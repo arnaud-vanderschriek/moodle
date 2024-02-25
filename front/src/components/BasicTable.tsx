@@ -10,7 +10,8 @@ import Paper from '@mui/material/Paper';
 import { Checkbox } from '@mui/material';
 
 
-export default function BasicTable({ data }: any) {
+export default function BasicTable({ data, selectCourse }: any) {
+ 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -30,7 +31,7 @@ export default function BasicTable({ data }: any) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <Checkbox /> {row.name}
+                <Checkbox onChange={(event) => selectCourse(event, row)} /> {row.name}
               </TableCell>
               <TableCell align="right">{row.startDate}</TableCell>
               <TableCell align="right">{row.endDate}</TableCell>

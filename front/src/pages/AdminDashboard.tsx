@@ -25,6 +25,7 @@ import FollowingCourses from '../components/StudentContainer/FollowingCourses';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CoursesManagement from '../components/AdminContainer/CoursesManagement';
 import OverView from '../components/StudentContainer/OverView';
+import CalendarAdmin from '../components/AdminContainer/CalendarAdmin';
 
 
 const drawerWidth: number = 240;
@@ -184,10 +185,9 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={1}>
-                {selectedMenuItem === 'overview' && <OverView /> }
-                {selectedMenuItem === 'courses' && <Courses /> }
+                {selectedMenuItem === 'courses' && <CalendarAdmin /> }
                 {selectedMenuItem === 'works' && <FollowingCourses /> }
-                {selectedMenuItem === "progress" && <CoursesManagement /> }
+                {selectedMenuItem === "registration" && <CoursesManagement /> }
             </Grid>
           </Container>
         </Box>

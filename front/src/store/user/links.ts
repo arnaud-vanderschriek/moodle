@@ -10,6 +10,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import SchoolIcon from '@mui/icons-material/School';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 const INITIAL_STATE: any = {
    links: [
@@ -28,7 +29,7 @@ const INITIAL_STATE: any = {
 
     { path: "courses", name: 'Courses', roleID: 3, icon: ShoppingCartIcon },
     { path: "following", name: 'Following', roleID: 3, icon: DashboardIcon },
-    { path: "modules", name: 'Modules', roleID: 3, icon: ViewModuleIcon },
+    { path: "registration", name: 'Registration', roleID: 3, icon: AppRegistrationIcon },
    ]
 };
 
