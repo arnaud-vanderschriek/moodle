@@ -1,5 +1,4 @@
-import { Label } from '@mui/icons-material'
-import { Button, FormControl, Grid, Input, Paper, TextField } from '@mui/material'
+import { Grid, Input, Paper, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import InputFileUpload  from './Sender'
 import axios from 'axios'

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import DataTable from '../DataTable';
 import BasicTable from '../BasicTable';
 import { useDispatch, useSelector } from 'react-redux';
-import { User } from '../../types';
 import StudentCalendar from './StudentCalendar';
 import axios from 'axios';
 

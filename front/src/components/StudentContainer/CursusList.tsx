@@ -1,5 +1,4 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
-import React from 'react'
 
 const CursusList = ({cursus}: any) => {
   return (

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { store } from '../store';
 import { useNavigate } from 'react-router-dom';
-import NotFound from './NotFound';
 
 
 const DashboardContainer = ({ children }: any) => {

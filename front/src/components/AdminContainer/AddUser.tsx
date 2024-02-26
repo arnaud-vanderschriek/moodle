@@ -1,13 +1,7 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, Grid, Link, Paper, TextField } from '@mui/material'
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import dayjs from 'dayjs';
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { Box, Button, Container, Grid, Paper, TextField } from '@mui/material'
+import React from 'react'
 
 const AddUser = () => {
-	const dispatch = useDispatch();
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -5,7 +5,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-const Calendar = (events: any) => {
+const Calendar = () => {
     const userId = useSelector((state:any) => state.user.user.id);
     const [courses, setCourses] = useState({
       events: []
@@ -38,7 +38,7 @@ const Calendar = (events: any) => {
         initialView="dayGridMonth"
         height="600px"
         aspectRatio={2}
-          events={courses.events}
+        events={courses.events}
         editable={true}
         droppable={true}
         selectable={true}

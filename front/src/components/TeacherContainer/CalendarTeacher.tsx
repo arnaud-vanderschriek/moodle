@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
-import { Button } from '@mui/material';
-import { EventInput } from '@fullcalendar/core';
+import interactionPlugin from "@fullcalendar/interaction";
 
-const CalendarTeacher = (events: any) => {
+const CalendarTeacher = () => {
   return (
     <FullCalendar
       themeSystem="tailwind"
@@ -16,7 +13,6 @@ const CalendarTeacher = (events: any) => {
       editable={true}
       droppable={true}
       selectable={true}
-    
     />
   );
 };
