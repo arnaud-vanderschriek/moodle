@@ -8,24 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-function createData(
-  name: string,
-  startDate: string,
-  endDate: string,
-  description?: string,
-  userID?: number,
-) {
-  return { name, startDate, endDate, description, userID };
-}
-
-const rows = [
-  createData('Math', "15-01-2024", "15-01-2024", "Marc", 4.0),
-  createData('ASP.NET', "15-01-2024",  "15-01-2024", "Antoine", 4.3),
-  createData('Python',  "15-01-2024",  "15-01-2024", "khun", 6.0),
-  createData('French',  "15-01-2024",  "15-01-2024", "Padraig", 4.3),
-  createData('NodeJS',  "15-01-2024",  "15-01-2024", "Angelina", 3.9),
-];
-
 export default function BasicTable({cursus}:any) {
   return (
     <TableContainer component={Paper}>

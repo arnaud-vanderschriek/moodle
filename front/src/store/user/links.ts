@@ -1,6 +1,5 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
 import AssessmentIcon from '@mui/icons-material/Assessment';

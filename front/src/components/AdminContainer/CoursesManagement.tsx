@@ -1,9 +1,5 @@
-import { Box, Button, Container, Grid, Paper, TextField } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import DataTable from '../DataTable';
-import BasicTable from '../BasicTable';
-import { useDispatch } from 'react-redux';
-import { User } from '../../types';
+import { Grid, Paper } from '@mui/material'
+import React from 'react'
 import TabPanel from './TabPanel';
 
 const CoursesManagement = () => {

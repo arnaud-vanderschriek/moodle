@@ -7,7 +7,6 @@ import StudentCalendar from './StudentCalendar';
 import axios from 'axios';
 
 const Courses = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
   const [ cursus, setCursus] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([])

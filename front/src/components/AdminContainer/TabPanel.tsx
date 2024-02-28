@@ -4,10 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AddCourses from './AddCourses';
-import { Grid } from '@mui/material';
 import AddUser from './AddUser';
 import AddModules from './AddModules';
-import { Send } from '@mui/icons-material';
 import SendMail from './SendMail';
 
 interface TabPanelProps {
