@@ -3,7 +3,8 @@ import { Button, Card, CardActions, CardContent, CardMedia, Container, Typograph
 const CursusList = ({cursus}: any) => {
   return (
     <Container sx={{ display: 'flex', flexWrap: 'wrap', gap: 2}}>
-      { cursus.map((elem: any) => (
+      { 
+        cursus.map((elem: any) => (
           <Card sx={{ maxWidth: 'auto' }} key={elem.id}>
             <CardMedia
               component="img"

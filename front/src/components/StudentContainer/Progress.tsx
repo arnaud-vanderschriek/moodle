@@ -14,8 +14,8 @@ const Progress = () => {
   const fetchModules = async () => {
       const response = await axios.get(`https://localhost:7155/api/Users/${userId}/module-end-dates`)
       const data = response.data;
-      setModules(data)
-      console.log(modules, 'modules in Progress')
+
+      setModules(data);
   }
 
   const getBackgroundColor = (endDate: string) => {

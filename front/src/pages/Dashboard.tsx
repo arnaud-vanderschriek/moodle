@@ -137,7 +137,7 @@ export default function Dashboard() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: '36px',
-                ...(open && { display: 'no  ne' }),
+                ...(open && { display: 'none' }),
               }}
             >
               <MenuIcon />

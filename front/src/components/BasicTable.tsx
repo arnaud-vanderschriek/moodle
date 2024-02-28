@@ -11,7 +11,6 @@ import { Checkbox } from '@mui/material';
 
 
 export default function BasicTable({ data, selectCourse }: any) {
- 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

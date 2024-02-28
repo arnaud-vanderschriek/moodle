@@ -43,11 +43,12 @@ const auth = {
       } catch (error) {
         dispatch.authErrors.setErrors(error);
       }
+    },
+
+    logoutUser: () => {
+        dispatch.auth.logout();
     }
   }),
-  logoutUser: (dispatch: RematchDispatch<any>) => {
-      dispatch.auth.logout();
-  }
 };
 
 export default auth;

@@ -124,8 +124,6 @@ const CalendarTeacher = () => {
       custom: eventInfo.draggedEl.getAttribute("data-custom")
     };
 
-    console.log(newEvent, "tout l'objet event")
-
     setState((state) => {
       return {
         ...state,
@@ -158,60 +156,60 @@ const CalendarTeacher = () => {
 
   return (
     <React.Fragment>
-    <Grid item xs={12} md={12} lg={12}>
-      <Paper
-        sx={{
-          p: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          height: 'auto',
-        }}
-      >
-        <h1>Sessions date.</h1>
-        <Card sx={{ m: 2}}>
-        <Grid container spacing={12}>
-          <Grid item lg={4}>
-            <TextField type='text' name='Name' placeholder='Name'/>
+      <Grid item xs={12} md={12} lg={12}>
+        <Paper
+          sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'auto',
+          }}
+        >
+          <h1>Sessions date.</h1>
+          <Card sx={{ m: 2}}>
+          <Grid container spacing={12}>
+            <Grid item lg={4}>
+              <TextField type='text' name='Name' placeholder='Name'/>
+            </Grid>
+            <Grid item lg={4}>
+              <Button  
+                type="submit"
+                name="name"
+                onClick={addEvent} 
+                variant="contained"
+                value="add external event" >
+                  Add Event
+              </Button> 
+            </Grid>
           </Grid>
-          <Grid item lg={4}>
-          <Button  
-            type="submit"
-            name="name"
-            onClick={addEvent}  // fonction from props
-            variant="contained"
-            value="add external event" >
-              Add Event
-          </Button> 
-          </Grid>
-       
-        </Grid>
-      </Card>
-      <div id="external-events">
-
-  {state.externalEvents.map((event: any) => (
-    <div
-      className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2"
-      title={event.title}
-      data-id={event.id}
-      data-color={event.color}
-      data-custom={event.custom}
-      key={event.id}
-      style={{
-        backgroundColor: event.color,
-        borderColor: event.color,
-        cursor: "pointer"
-      }}
-      draggable={true}
-    >
-      <div className="fc-event-main">
-        <div>
-          <strong>{event.title}</strong>
+        </Card>
+        <div id="external-events">
+          {
+            state.externalEvents.map((event: any) => (
+              <div
+                className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2"
+                title={event.title}
+                data-id={event.id}
+                data-color={event.color}
+                data-custom={event.custom}
+                key={event.id}
+                style={{
+                  backgroundColor: event.color,
+                  borderColor: event.color,
+                  cursor: "pointer"
+                }}
+                draggable={true}
+              >
+                <div className="fc-event-main">
+                  <div>
+                    <strong>{event.title}</strong>
+                  </div>
+                  {event.custom}
+                </div>
+              </div>
+            ))
+          }
         </div>
-        {event.custom}
-      </div>
-    </div>
-  ))}
-</div>
         <Calendar 
           calendarEvents={state.calendarEvents} 
           weekends={state.weekendsVisible} 
@@ -221,7 +219,7 @@ const CalendarTeacher = () => {
           handleEventReceive={handleEventReceive}
         />
       </Paper>
-      </Grid>
+    </Grid>
   </React.Fragment>
   )
 }

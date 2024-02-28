@@ -6,29 +6,30 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 const Calendar = () => {
-    const userId = useSelector((state:any) => state.user.user.id);
-    const [courses, setCourses] = useState({
-      events: []
-    });
-    useEffect(() => {
-        fetchIngCourses();
-        console.log(courses.events, 'after fetchign')
-    }, [])
+  const userId = useSelector((state:any) => state.user.user.id);
+  const [courses, setCourses] = useState({
+    events: []
+  });
 
-    const fetchIngCourses = async() => {
-        const response =await axios.get(`https://localhost:7155/api/users/${userId}/courses`)
-        const data = response.data;
-        console.log(data)
-        setCourses(prevState => ({
-            ...prevState,
-            events: data.map((elem: any) => ({
-                id: elem.id,
-                title: elem.name,
-                start: elem.startDate,
-                end: elem.endDate
-            }))
-        }));
-    }
+  useEffect(() => {
+      fetchIngCourses();
+  }, [])
+
+  const fetchIngCourses = async() => {
+    const response = await axios.get(`https://localhost:7155/api/users/${userId}/courses`)
+    const data = response.data;
+
+    setCourses(prevState => ({
+        ...prevState,
+        events: data.map((elem: any) => ({
+            id: elem.id,
+            title: elem.name,
+            start: elem.startDate,
+            end: elem.endDate
+        }))
+    }));
+  }
+  
   return (
     <React.Fragment>
       <h1>Courses planning</h1>

@@ -10,8 +10,6 @@ const Download = () => {
         maxColumns: 6,
       });
 
-      console.log(data, "data in Download");
-    
       return (
         <React.Fragment>
         <Grid item xs={12} md={12} lg={12}>
