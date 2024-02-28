@@ -4,12 +4,10 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 
 import LoginPage from './pages/LoginPage';
-import StudentDashboard from './pages/Studentdashboard';
-import TeacherDashboard from './pages/Teacherdashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import Dashboard from './pages/DashboardContainer';
+import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import AuthService from './services/AuthService';
+import DashboardContainer from './pages/DashboardContainer';
 
 
 const App = () => {
@@ -23,10 +21,10 @@ const App = () => {
           path='/dashboard' 
           element={<AuthService />}
         >
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/student" element={<StudentDashboard />} />
-          <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
-          <Route path="/dashboard/admin" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<DashboardContainer />} />
+          <Route path="/dashboard/student" element={<Dashboard />} />
+          <Route path="/dashboard/teacher" element={<Dashboard />} />
+          <Route path="/dashboard/admin" element={<Dashboard />} />
         </Route>
       </Routes>
     </Router>

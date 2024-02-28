@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SideBar } from '../components/SideBar';
@@ -27,6 +27,14 @@ import CoursesManagement from '../components/AdminContainer/CoursesManagement';
 import OverView from '../components/StudentContainer/OverView';
 import Works from '../components/StudentContainer/Works';
 import Progress from '../components/StudentContainer/Progress';
+import { RootState } from '../store';
+import CalendarTeacher from '../components/TeacherContainer/CalendarTeacher';
+import Download from '../components/TeacherContainer/Download';
+import Upload from '../components/TeacherContainer/Upload';
+import FeedBack from '../components/TeacherContainer/FeedBack';
+import Notes from '../components/TeacherContainer/Notes';
+import Learning from '../components/TeacherContainer/Learning';
+import CalendarAdmin from '../components/AdminContainer/CalendarAdmin';
 
 
 const drawerWidth: number = 240;
@@ -82,15 +90,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
+  const links = useSelector((state: RootState) => state.links.links);
+  const userStatus = useSelector((state: RootState) => state.user.user.roleID);
+  const filtredLinks = links.filter((elem: any) => elem.roleID === userStatus);
+
   const [open, setOpen] = useState(false);
-  const [ selectedMenuItem, setSelectedMenuItem ] = useState('overview');
-  const [ activeComponent, setActiveComponent] = useState(null);
+  const [ selectedMenuItem, setSelectedMenuItem ] = useState(
+        userStatus === 1 ? 'overview' :
+        userStatus === 2 ? 'calendar' :
+        userStatus === 3 ? 'courses' : ''
+  );
 
-  const links = useSelector((state: any) => state.links.links);
-  const userStatus = useSelector((state: any) => state.user.user.roleID);
-  const filtredLinks = links.filter((elem: any) => elem.roleID === userStatus)
-
-  console.log(filtredLinks, "filtredLinks")
   const dispatch = useDispatch();
   const navigate = useNavigate();
     
@@ -115,6 +125,9 @@ export default function Dashboard() {
           <Toolbar
             sx={{
               pr: '24px',
+              backgroundColor: userStatus === 2 ? "pink" 
+                              : userStatus === 3 ? "black" 
+                                : 'primary'
             }}
           >
             <IconButton
@@ -136,7 +149,10 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              {`Moodle - Student Dashboard`}
+              {userStatus === 1 && `Moodle - Student Dashboard`}
+              {userStatus === 2 && `Moodle - Teacher Dashboard`}
+              {userStatus === 3 && `Moodle - Admin Dashboard`}
+              
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -185,10 +201,21 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={1}>
-                {selectedMenuItem === 'overview' && <OverView /> }
-                {selectedMenuItem === 'courses' && <Courses /> }
-                {selectedMenuItem === 'work' && <Works /> }
-                {selectedMenuItem === 'progress' && <Progress /> }
+                {userStatus === 1 && selectedMenuItem === 'overview' && <OverView /> }
+                {userStatus === 1 && selectedMenuItem === 'courses' && <Courses /> }
+                {userStatus === 1 && selectedMenuItem === 'work' && <Works /> }
+                {userStatus === 1 && selectedMenuItem === 'progress' && <Progress /> }
+
+                {userStatus === 2 && selectedMenuItem === 'calendar' && <CalendarTeacher /> }
+                {userStatus === 2 && selectedMenuItem === 'download' && <Download /> }
+                {userStatus === 2 && selectedMenuItem === 'upload' && <Upload /> }
+                {userStatus === 2 && selectedMenuItem === "feedback" && <FeedBack /> }
+                {userStatus === 2 && selectedMenuItem === "note" && <Notes /> }
+                {userStatus === 2 && selectedMenuItem === "learning" && <Learning /> }
+
+                {userStatus === 3 && selectedMenuItem === 'courses' && <CalendarAdmin /> }
+                {userStatus === 3 && selectedMenuItem === 'works' && <FollowingCourses /> }
+                {userStatus === 3 && selectedMenuItem === "registration" && <CoursesManagement /> }
             </Grid>
           </Container>
         </Box>
